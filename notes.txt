@@ -1,0 +1,4 @@
+Reddit OAuth 2: https://www.reddit.com/r/redditdev/comments/2owrnn/oauth2_implicit_grants_cors_apponly_oauth2/
+				https://www.reddit.com/r/redditdev/comments/49tgnv/having_issues_setting_up_oauth2_with_angularjss/
+Possible OAuth 2 client: https://github.com/andreassolberg/jso
+Potentialy epic OAuth2 client: https://github.com/sahat/satellizer

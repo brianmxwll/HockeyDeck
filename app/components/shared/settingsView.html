@@ -1,0 +1,45 @@
+<div class="settings-container" style="display:none;" ng-controller="SettingsController">
+	<div ng-if="filterPlays" class="settings-row font-color-primary font-size-normal" ng-class="{'settings-row-closed': closed['events']}">
+		<table class="settings-layout" stlye="table-layout:fixed;">
+			<tr class="settings-header" ng-click="toggleSettings('events')">
+				<td>
+					<img src="/assets/img/icon-tag.svg" class="settings-row-icon-img"/>
+				</td>
+				<td>Events</td>
+				<td class="font-subtext">{{allowedEvents.length}} selected</td>
+				<td>
+					<img src="/assets/img/icon-arrow-down.svg" class="settings-row-expand-img"/>
+				</td>
+			</tr>
+			<tr ng-repeat="event in events">
+				<td></td>
+				<td></td>
+				<td><input type="checkbox" value="{{event.name}}" ng-model="event.selected"> {{event.desc}} </td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	<div ng-if="filterTeams" class="settings-row font-size-normal font-color-primary" ng-class="{'settings-row-closed': closed['teams']}">
+		<table class="settings-layout" stlye="table-layout:fixed;">
+			<tr class="settings-header" ng-click="toggleSettings('teams')">
+				<td>
+					<img src="/assets/img/icon-hockey-sticks.svg" class="settings-row-icon-img"/>
+				</td>
+				<td>Teams</td>
+				<td class="font-subtext">{{allowedTeams.length}} selected</td>
+				<td>
+					<img src="/assets/img/icon-arrow-down.svg" class="settings-row-expand-img"/>
+				</td>
+			</tr>
+			<tr ng-repeat="team in teams">
+				<td></td>
+				<td></td>
+				<td><input type="checkbox" value="{{team.name}}" ng-model="team.selected"> {{team.name}} </td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	<div ng-if="showTest" class="settings-row font-size-normal font-color-primary" style="">Win Games 3
+
+	</div>
+</div>

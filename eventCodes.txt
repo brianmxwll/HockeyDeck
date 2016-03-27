@@ -1,0 +1,18 @@
+Neutral
+*PSTR - Period Start
+*PEND - Period End
+*SOC - Shootout Complete
+STOP - Stoppage
+*GEND - Game End
+
+Action
+HIT
+GOAL
+GIVE - Giveaway
+TAKE - Takeaway
+CHL - Challenge
+FAC - Faceoff
+SHOT
+PENL - Penalty
+MISS - Missed Shot
+BLOCK - Blocked Shot

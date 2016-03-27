@@ -1,0 +1,339 @@
+/* Fonts */
+*{ font-family:Sintony, Arial, sans-serif; }
+
+.font-color-primary   { color:#FFFFFF; }
+.font-color-secondary { color:#999999; }
+.font-size-header     { font-size:24px; }
+.font-size-primary    { font-size:18px; }
+.font-size-normal     { font-size:14px; }
+.font-size-minor      { font-size:10px; }
+.font-subtext         { font-size:10px; font-style:italic; }
+.text-center          { text-align:center; }
+
+html,body { width:100%; height:100%; margin:0px; padding:0px; background-color:#444448; }
+
+.col-main-sett { width:65px; height:100%; float:left; }
+.col-reg { min-width:350px; max-width:350px; height:calc(100vh - 10px); background-color:#222426; margin:5px 3px 5px 3px; overflow-x:hidden; display:flex; flex-direction:column; }
+.col-titlebar { background-color:#303236; min-height:50px; width:348px; margin:1px 1px 1px 1px; }
+.col-side-titlebar { cursor:pointer; }
+.col-titlebar-header { height:50px; }
+.col-handle { float:left; width:5px; height:35px; margin-top:10px; background-image: url("/assets/img/draghandle.svg"); position:relative; top:3px; left:1px; cursor:move;}
+.col-text { float:left; position:relative; top:10px; left:10px;}
+
+.col-side-back-img {
+    height:16px;
+    width:16px;
+}
+
+.bgColorDark { background-color:#616161; }
+.pageContainer { height:100%; width:100%; padding:0px; }
+.scrollarea { position:relative; float:left; width:calc(100% - 65px); height:100%; overflow-x:auto; display:flex; flex-wrap:no-wrap; white-space:no-wrap; }
+.clear { clear:both; }
+
+.col-container { 
+    width:350px;
+    border-style: solid;
+    border-width:0px 0px 1px 0px; 
+    border-color:#444448; 
+    overflow-y:auto; 
+    flex:2; 
+}
+.game-container { 
+	padding:0px 4px 0px 0px;
+	border-style: solid; 
+	border-width:0px 0px 1px 0px; 
+	border-color:#444448;
+}
+
+.game-row { padding:8px 0px 8px 0px; }
+.game-team-img { height:35px; }
+
+table.game-layout td:nth-child(1){
+    width: 80px;
+}
+table.game-layout td:nth-child(2) {
+    width: 120px;
+}
+table.game-layout td:nth-child(3) {
+    width: 145px;
+}
+
+.play-col { line-height:90%; }
+.play-container { 
+	width:350px;
+    height:35px;
+    padding:0px 18px 0px 12px;
+	margin:8px 0px 0px 0px;
+	border-style: solid; 
+	border-width:0px 0px 1px 0px; 
+	border-color:#444448;
+}
+
+.team-icon-sm { height:25px; }
+.play-team-img { height:25px; float:right; display:block; margin-left:auto; margin-right:auto; }
+.play-team-img-grey { -webkit-filter: grayscale(100%); filter: grayscale(100%); }
+
+.play-text-sm { padding-right:25px; }
+.play-text-med { padding-right:45px; }
+.play-text-lg { padding-right:70px; }
+
+viewplayer {
+    cursor:pointer;
+    color:red;
+}
+
+.text-right { float:right; }
+c.text-low { position:relative; top:3px; }
+.text-high { position:relative; bottom:3px; }
+
+
+/*
+ * COLUMN SETTINGS STYLES
+ */
+.settings-container { 
+    background-color:rgb(51,51,51); 
+    margin:0px 1px 0px 1px; 
+}
+
+.settings-header { height:38px; cursor:pointer;}
+.settings-row { 
+	background-color:rgb(64,66,70); 
+	margin-bottom:1px; 
+	min-height:38px; 
+	max-height:500px;
+	overflow-y:hidden;  
+	-webkit-transition: max-height 1s ease-in-out; 
+	   -moz-transition: max-height 1s ease-in-out; 
+	     -o-transition: max-height 1s ease-in-out; 
+	        transition: max-height 1s ease-in-out; 
+}
+.settings-row-closed { 
+	max-height:38px; 
+	-webkit-transition: max-height 1s ease-in-out; 
+	   -moz-transition: max-height 1s ease-in-out; 
+	     -o-transition: max-height 1s ease-in-out; 
+	        transition: max-height 1s ease-in-out; 
+}
+
+.settings-toggle-img {
+    height:24px;
+    width:24px;
+    margin-right:12px;
+    margin-top:16px;
+    cursor:pointer;
+}
+
+.settings-row-icon-img {
+    height:20px;
+    width:20px;
+    margin-left:6px;
+    margin-top:2px;
+}
+
+.settings-row-expand-img {
+    height:16px;
+    width:16px;
+    margin-right:12px;
+}
+
+.settings-layout { height:100%; }
+table.settings-layout td:nth-child(1){
+    width: 35px;
+}
+table.settings-layout td:nth-child(2) {
+    width: 82px;
+}
+table.settings-layout td:nth-child(3) {
+    width: 207px;
+}
+table.settings-layout td:nth-child(4) {
+    width: 24px;
+}
+table.settings-layout tr:nth-child(1){
+    vertical-align: center;
+}
+/*
+ * END COLUMN SETTINGS STYLES
+ */
+
+ /*
+  * SCROLL BAR STYLES
+  */
+::-webkit-scrollbar {
+    width: 12px;
+    border-left:1px solid rgb(60,60,60);
+}
+ 
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+}
+ 
+::-webkit-scrollbar-thumb {
+	background-color:rgb(102,102,102);
+    border-radius: 5px;
+}
+
+/*
+ * END SCROLL BAR STYLES
+ */
+
+.animate-repeat {
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition:all linear 1.0s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.animate-repeat.ng-enter-stagger {
+    transition-delay: 0.2s ;
+        -webkit-transition-delay: 0.2s ;
+    /*
+        FROM THE DOCUMENTATION:
+        In case the stagger doesn't work then these two values must be set
+        to 0 to avoid an accidental CSS inheritance.
+    */
+    transition-duration: 0s ;
+        -webkit-transition-duration: 0s ;
+}
+
+
+.animate-switch-container {
+    position:relative;
+}
+
+.animate-switch-main {
+    -webkit-transition: 450ms cubic-bezier(0.250, 0.1, 0.250, 1) all;
+       -moz-transition: 450ms cubic-bezier(0.250, 0.1, 0.250, 1) all;
+        -ms-transition: 450ms cubic-bezier(0.250, 0.1, 0.250, 1) all;
+         -o-transition: 450ms cubic-bezier(0.250, 0.1, 0.250, 1) all;
+            transition: 450ms cubic-bezier(0.250, 0.1, 0.250, 1) all;
+    position:absolute;
+}
+
+/* The starting CSS styles for the enter animation */
+.animate-switch-main.ng-enter {
+    left:-100%;
+}
+
+/* The finishing CSS styles for the enter animation */
+.animate-switch-main.ng-enter.ng-enter-active {
+    left:0;
+}
+
+/* now the element will fade out before it is removed from the DOM */
+.animate-switch-main.ng-leave {
+    left:0;
+}
+.animate-switch-main.ng-leave.ng-leave-active {
+    left:-100%;
+}
+
+
+.animate-switch-side {
+    -webkit-transition: 450ms cubic-bezier(0.250, 0.1, 0.250, 1) all;
+       -moz-transition: 450ms cubic-bezier(0.250, 0.1, 0.250, 1) all;
+        -ms-transition: 450ms cubic-bezier(0.250, 0.1, 0.250, 1) all;
+         -o-transition: 450ms cubic-bezier(0.250, 0.1, 0.250, 1) all;
+            transition: 450ms cubic-bezier(0.250, 0.1, 0.250, 1) all;
+    position:absolute;
+}
+
+/* The starting CSS styles for the enter animation */
+.animate-switch-side.ng-enter {
+    left:100%;
+}
+
+/* The finishing CSS styles for the enter animation */
+.animate-switch-side.ng-enter.ng-enter-active {
+    left:0;
+}
+
+/* now the element will fade out before it is removed from the DOM */
+.animate-switch-side.ng-leave {
+    left:0;
+}
+.animate-switch-side.ng-leave.ng-leave-active {
+    left:100%;
+}
+
+.no-stagger {
+    transition-delay: 0s !important;
+        -webkit-transition-delay: 0s !important;
+    /*
+        FROM THE DOCUMENTATION:
+        In case the stagger doesn't work then these two values must be set
+        to 0 to avoid an accidental CSS inheritance.
+    */
+    transition-duration: 0s !important;
+        -webkit-transition-duration: 0s !important;
+
+    transition:all linear 0.0s !important;
+}
+
+.player-stats-table {
+
+}
+
+.player-info-container {
+    height:100px;
+    width:350px;
+    overflow:hidden;
+    margin-right:12px;
+    background-size: 100px auto;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+.player-stats-container {
+    padding-right:10px;
+}
+
+
+/* Center all text not in the first col */
+.standings-table td:not(:first-child), th:not(:first-child) {
+    text-align:center;
+}
+
+/* Create some padding away from the walls */
+.standings-table td:first-child {
+    padding-left:18px;
+}
+
+.standings-table td:last-child {
+    padding-right:12px;
+    white-space:nowrap;
+}
+
+/* Set the column widths - wide for first and last, thin for everything in between */
+table.standings-table th:first-child, th:last-child {
+    width: 70px;
+}
+
+table.standings-table th:not(:first-child):not(:last-child) {
+    width: 40px;
+}
+
+.standings-table tr {
+    border-style:solid;
+    border-width:0px 0px 1px 0px;
+    border-color:#444448;
+}
+
+.standings-buttons {
+    width:100%;
+    margin:10px 14px;
+}

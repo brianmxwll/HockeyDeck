@@ -1,0 +1,51 @@
+<div ng-controller="ColumnController" class="col-reg">
+	<div ng-switch on="view" class="animate-switch-container">
+		<div ng-switch-when="main" class="animate-switch-main">
+			<div class="col-titlebar">
+				<div class="col-titlebar-header">
+					<div class="col-handle"></div>
+					<div class="col-text font-size-header font-color-primary">
+						{{title}}
+					</div>
+					<div style="float:right;" opencolsettings>
+						<img src="/assets/img/sliders.svg" class="settings-toggle-img">
+					</div>
+				</div>
+				<div ng-switch on="type">
+					<colsettings ng-switch-when="games" controller-ident="{{controllerIdent}}" filter-teams="true"></colsettings>	
+					<colsettings ng-switch-when="plays" controller-ident="{{controllerIdent}}" filter-teams="true" filter-plays="true"></colsettings>	
+					<colsettings ng-switch-when="standings" controller-ident="{{controllerIdent}}" filter-teams="true"></colsettings>	
+					<colsettings ng-switch-when="reddit" controller-ident="{{controllerIdent}}" filter-teams="true"></colsettings>	
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div ng-switch on="type" class="col-container">
+				<gamecol ng-switch-when="games" controller-ident="{{controllerIdent}}"></gamecol>
+				<playcol ng-switch-when="plays" controller-ident="{{controllerIdent}}"></playcol>
+				<standingscol ng-switch-when="standings" controller-ident="{{controllerIdent}}"></standingscol>
+				<redditcol ng-switch-when="reddit" controller-ident="{{controllerIdent}}"></redditcol>
+			</div>
+		</div>
+		<div ng-switch-when="side" class="animate-switch-side">
+			<div class="col-titlebar col-side-titlebar" ng-click="returnToMainView()">
+				<div class="col-titlebar-header col-side-titlebar-header">
+					<div class="col-text font-size-header font-color-primary">
+						<img src="/assets/img/icon-arrow-left.svg" class="col-side-back-img">
+						{{sideTitle}}
+					</div>
+				</div>
+				<div ng-switch on="type"> <!-- Should we even have settings on the side col? -->
+					<colsettings ng-switch-when="games" controller-ident="{{controllerIdent}}" filter-teams="true"></colsettings>	
+					<colsettings ng-switch-when="plays" controller-ident="{{controllerIdent}}" filter-teams="true" filter-plays="true"></colsettings>	
+					<colsettings ng-switch-when="standings" controller-ident="{{controllerIdent}}" filter-teams="true"></colsettings>	
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div ng-switch on="sideType" class="col-container">
+				<gamecol ng-switch-when="games" controller-ident="{{controllerIdent}}"></gamecol>
+				<playcol ng-switch-when="plays" controller-ident="{{controllerIdent}}"></playcol>
+				<playercol ng-switch-when="player" controller-ident="{{controllerIdent}}" player="{{playerDetails}}"></playercol>
+			</div>
+		</div>
+	</div>
+</div>

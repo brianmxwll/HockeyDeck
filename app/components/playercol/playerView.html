@@ -1,0 +1,54 @@
+<div ng-controller="PlayerController" class="col-container">
+	<div class="player-info-container" ng-style="{'background-image':'url(' + img + ')'}">
+		<div>{{playerData.fullName}}</div>
+		<div>Born: {{playerData.birthDate}}</div>
+		<div>Birthplace: {{playerData.birthCity}}, {{playerData.birthStateProvince}}, {{playerData.birthCountry}}</div>
+		<div>Shoots: {{playerData.shootsCatches}}</div>
+	</div>
+
+	<div ng-if="playerData !== undefined" class="player-stats-container">
+		<div ng-repeat="stat in playerData.stats">
+			<span class="font-size-primary">{{ cleanStatType(stat.type.displayName) }}</span>
+			<table ng-if="stat.type.displayName.indexOf('career') == -1" class="table player-stats-table">
+				<tr class="text-center">
+					<th>Yr</th>
+					<th>Team</th>
+					<th>Games</th>
+					<th>G</th>
+					<th>A</th>
+					<th>P</th>
+				</tr>
+				<tr ng-repeat="split in stat.splits" class="font-size-minor">
+					<td>{{ cleanSeason(split.season) }}</td>
+					<td>{{ split.team.name }}</td>
+					<td class="text-center">{{ split.stat.games }}</td>
+					<td class="text-center">{{ split.stat.goals }}</td>
+					<td class="text-center">{{ split.stat.assists }}</td>
+					<td class="text-center">{{ split.stat.points }}</td>
+				</tr>
+			</table>
+			<table ng-if="stat.type.displayName.indexOf('career') > -1" class="table player-stats-table">
+				<tr class="text-center">
+					<th>Games</th>
+					<th>G</th>
+					<th>A</th>
+					<th>P</th>
+					<th>TOI/G</th>
+					<th>+/-</th>
+				</tr>
+				<tr ng-repeat="split in stat.splits" class="font-size-minor">
+					<td class="text-center">{{ split.stat.games }}</td>
+					<td class="text-center">{{ split.stat.goals }}</td>
+					<td class="text-center">{{ split.stat.assists }}</td>
+					<td class="text-center">{{ split.stat.points }}</td>
+					<td class="text-center">{{ split.stat.timeOnIcePerGame }}</td>
+					<td class="text-center">{{ split.stat.plusMinus }}</td>
+				</tr>
+			</table>
+
+		</div>
+		
+	</div>
+	
+</div>
+

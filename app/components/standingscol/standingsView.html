@@ -1,0 +1,60 @@
+<div ng-controller="StandingsController" class="col-container">
+	<div class="btn-group standings-buttons"> 
+		<button type="button" ng-click="colGroup = 'Division'; colSort = ['Conference', 'Division', '-PTS'];" class="btn btn-default" aria-label="Division">Div</button> 
+		<button type="button" ng-click="colGroup = 'Conference'; colSort = ['Conference', '-PTS'];" class="btn btn-default" aria-label="Conference">Conf</button> 
+		<button type="button" ng-click="colGroup = 'Conference'; colSort = ['Conference', '-PTS'];" class="btn btn-default" aria-label="Wild Card">Wild Card</button> 
+		<button type="button" ng-click="colGroup = 'League'; colSort = ['-PTS'];" class="btn btn-default" aria-label="League">League</button> 
+	</div>
+	<div ng-if="colGroup == 'Division'" ng-repeat="conference in standings | orderBy:colSort | groupBy:'Conference' | toArray:true">
+		{{conference.$key}}
+		<table ng-repeat="division in conference | groupBy:'Division' | toArray:true" class="table standings-table">
+			<tr ng-include="'teamheaders'" ng-init="header = division.$key"></tr>
+			<tr ng-repeat="team in division" ng-include="'teamcells'" class="font-size-minor"></tr> 
+		</table>
+	</div>
+
+	<div ng-if="colGroup == 'Conference'" ng-repeat="conference in standings | orderBy:colSort | groupBy:'Conference' | toArray:true">
+		<table class="table standings-table">
+			<tr ng-include="'teamheaders'" ng-init="header = conference.$key"></tr>
+			<tr ng-repeat="team in conference" ng-include="'teamcells'" class="font-size-minor"></tr> 
+		</table>
+	</div>
+
+	<div ng-if="colGroup == 'League'">
+		<table class="table standings-table">
+			<tr ng-include="'teamheaders'" ng-init="header = 'League'"></tr>
+			<tr ng-repeat="team in standings | orderBy:colSort" ng-include="'teamcells'" class="font-size-minor"></tr> 
+		</table>
+	</div>
+
+	<div ng-if="colGroup == 'WildCard'">
+		TODO
+	</div>
+</div>
+
+<script type='text/ng-template' id="teamheaders">
+	<th>{{header == 'Metropolitan' ? 'Metro' : header}}</th>
+	<th>GP</th>
+	<th>W</th>
+	<th>L</th>
+	<th>OTL</th>
+	<th>Pts</th>
+	<th>L10</th>
+</script>
+
+<script type='text/ng-template' id="teamcells"> 
+    <td>
+		<img ng-src="assets/img/{{team.Abbreviation}}.svg" class="team-icon-sm" />
+	</td>
+	<td>{{team.GP}}</td>
+	<td>{{team.W}}</td>
+	<td>{{team.L}}</td>
+	<td>{{team.OTL}}</td>
+	<td>{{team.PTS}}</td>
+	<td>{{team.L10}}</td>
+</script>
+
+<script type='text/ng-template' id="teamimg"> 
+    <img ng-src="assets/img/{{team.Abbreviation}}.svg" class="team-icon-sm" />
+</script>
+

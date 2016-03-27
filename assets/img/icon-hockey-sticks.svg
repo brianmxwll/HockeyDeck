@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="200.000000pt"
+   height="200.000000pt"
+   viewBox="0 0 200.000000 200.000000"
+   preserveAspectRatio="xMidYMid meet"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="icon-hockey-sticks.svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview12"
+     showgrid="false"
+     inkscape:zoom="2.6700352"
+     inkscape:cx="268.98351"
+     inkscape:cy="153.31726"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g6" />
+  <metadata
+     id="metadata4">
+Created by potrace 1.13, written by Peter Selinger 2001-2015
+<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <g
+     transform="translate(0.000000,200.000000) scale(0.100000,-0.100000)"
+     fill="#000000"
+     stroke="none"
+     id="g6">
+    <path
+       d="m 163,1771 c -42,-43 -63,-72 -63,-88 0,-18 89,-112 362,-386 L 825,934 725,834 625,734 403,734 c -179,0 -224,-3 -236,-14 -13,-13 -67,-206 -67,-240 0,-8 7,-22 16,-30 13,-14 53,-16 287,-16 l 271,0 163,162 163,162 163,-162 163,-162 271,0 c 342,0 321,-12 277,166 -15,58 -33,112 -41,120 -12,11 -57,14 -236,14 l -222,0 -100,100 -100,100 363,363 c 273,274 362,368 362,386 0,33 -118,151 -151,151 -18,0 -112,-89 -386,-362 l -363,-363 -363,363 c -274,273 -368,362 -386,362 -16,0 -45,-21 -88,-63 z"
+       id="path8"
+       inkscape:connector-curvature="0"
+       style="fill:#ffffff"
+       sodipodi:nodetypes="csccccscscscccccsccsccccsscccsc" />
+  </g>
+</svg>

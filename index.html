@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hockeydeck">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>HockeyDeck</title>
+        <script>
+            //Absolute first - if this window is just an oauth result, kick it back to the parent.
+            if (window.location.hash != "") {
+                window.opener.alertRecepit(window.location.hash);
+            }
+        </script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-kVo/Eh0sv7ZdiwZK32nRsp1FrDT3sLRLx3zVpSSTI9UdO5H02LJNLBg5F1gwvKg0" crossorigin="anonymous">
+        
+        <!-- Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css' />
+        <!-- Custom themes -->
+        <link rel="stylesheet" href="assets/css/styles.css" />
+    </head>
+    <body>
+        <div id="maincontainer" class="pageContainer font-color-primary">
+            <div class="col-main-sett">
+                <div id="settingsLabel" class="font-normal">Settings</div>
+                <button id="add-col-btn" type="button" class="btn btn-default" aria-label="Add Column" data-toggle="modal" data-target="#addColModal">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <div id="junkLabel" class="font-normal">Test Data:</div>
+            </div>
+            <div id="scrollcontent" class="scrollarea"></div>
+        </div>
+        <!-- Add Column Modal -->
+        <div class="modal fade" id="addColModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                       <button id="add-col-btn" type="button" class="btn btn-default" aria-label="Add Game Column" addgamecol>Add Game</button>
+                       <button id="add-col-btn" type="button" class="btn btn-default" aria-label="Add Plays Column" addplayscol>Add Plays</button>
+                       <button id="add-col-btn" type="button" class="btn btn-default" aria-label="Add Standings Column" addstandingscol>Add Standings</button>
+                       <button id="add-col-btn" type="button" class="btn btn-default" aria-label="Add Reddit Column" addredditcol>Add Reddit</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+        
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> 
+        <!-- Moment.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.0/moment-timezone.js"></script> 
+        <!-- Angular.js --> 
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+
+        <!-- Get pages that are simple functions and won't execute immediately. -->
+        <script src="app/helpers/rosters.js"></script>
+        <script src="app/helpers/standings.js"></script>
+
+        <!-- Main/Standard Page Code -->   
+        <script src="app/app.module.js"></script> 
+        <script src="app/testing.js"></script>
+
+        <!-- Game Column -->
+        <script src="app/components/gamecol/gameController.js"></script>
+        <script src="app/components/gamecol/gameDirectives.js"></script>
+
+        <!-- Plays Column -->
+        <script src="app/components/playcol/playController.js"></script>
+        <script src="app/components/playcol/playDirectives.js"></script>
+
+        <!-- Player Column -->
+        <script src="app/components/playercol/playerController.js"></script>
+        <script src="app/components/playercol/playerDirectives.js"></script>
+
+        <!-- Reddit Column -->
+        <script src="app/components/redditcol/redditControllers.js"></script>
+        <script src="app/components/redditcol/redditDirectives.js"></script>
+        <script src="app/components/redditcol/redditOAuthService.js"></script>
+        <script src="app/components/redditcol/redditContentService.js"></script>
+
+        <!-- Standings Column -->
+        <script src="app/components/standingscol/standingsController.js"></script>
+        <script src="app/components/standingscol/standingsDirectives.js"></script>
+
+        <!-- Column Settings -->
+        <script src="app/components/shared/settingsController.js"></script>
+        <script src="app/components/shared/settingsDirectives.js"></script>
+        <script src="app/components/shared/settingsMessageService.js"></script>
+
+        <!-- Column Animations -->
+        <script src="app/components/shared/column/colAnimations.js"></script>
+        <script src="app/components/shared/column/colController.js"></script>
+        <script src="app/components/shared/column/colDirective.js"></script>
+        <script src="app/components/shared/column/colDraggableDirective.js"></script>
+        
+    </body>
+</html>

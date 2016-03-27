@@ -1,0 +1,183 @@
+<div ng-controller="PlayController" class="col-container font-size-normal font-color-primary play-col">
+	<div class="play-container" ng-class="{'animate-repeat': !firstRun}" ng-repeat="play in plays | filter: FilterPlays(allowedEvents, allowedTeams) | limitTo:pages*100">
+		<!-- Render each play type as required [u'PSTR', u'SOC', u'HIT', u'GOAL', u'GIVE', u'CHL', u'STOP', u'PEND', u'TAKE', u'FAC', u'SHOT', u'GEND', u'PENL', u'MISS', u'BLOCK'] -->
+		<!-- Block -->
+		<div ng-if="play.event == 'BLOCK'">
+			<div>
+				<img ng-src="assets/img/{{play.meta.mainLogo}}.svg" class="play-team-img" />
+				<div class="play-text-med">
+					<div>Shot by <viewplayer player="{{play.meta.actionPlayers[0]}}"></viewplayer></div>
+					<div class="font-subtext">({{play.meta.extraInfo[0]}}, blocked by <viewplayer player="{{play.meta.actionPlayers[1]}}"></viewplayer>)</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Challenge -->
+		<div ng-if="play.event == 'CHL'">
+			<div>
+				<img ng-src="assets/img/{{play.meta.mainLogo}}.svg" class="play-team-img" />
+				<div class="play-text-med">
+					<div>Challenge: {{play.meta.extraInfo[0]}}</div>
+					<div class="font-subtext">Result: {{play.meta.extraInfo[1]}}</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Faceoff -->
+		<div ng-if="play.event == 'FAC'">
+			<div>
+				<img ng-src="assets/img/{{play.meta.mainLogo}}.svg" class="play-team-img" />
+				<div class="play-text-med">
+					<div>Faceoff won by <viewplayer player="{{play.meta.actionPlayers[0]}}"></viewplayer></div>
+					<div class="font-subtext">(vs <viewplayer player="{{play.meta.actionPlayers[1]}}"></viewplayer>)</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Game End -->
+		<div ng-if="play.event == 'GEND'">
+			<div>
+				<img ng-src="assets/img/{{play.visitorTeam}}.svg" class="play-team-img" />
+				<img ng-src="assets/img/{{play.homeTeam}}.svg" class="play-team-img" />
+				<div class="play-text-lg">
+					<div>Game ended</div>
+					<div class="font-subtext">
+						(Local time: {{play.meta.eventTime}})
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Giveaway -->
+		<div ng-if="play.event == 'GIVE'">
+			<div>
+				<img ng-src="assets/img/{{play.meta.mainLogo}}.svg" class="play-team-img play-team-img-grey" />
+				<div class="play-text-med">
+					<div>Giveaway by <viewplayer player="{{play.meta.actionPlayers[0]}}"></viewplayer></div>
+					<div class="font-subtext">({{play.meta.extraInfo[0]}})</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Goal -->
+		<div ng-if="play.event == 'GOAL'">
+			<div>
+				<img ng-src="assets/img/{{play.meta.mainLogo}}.svg" class="play-team-img" />
+				<div class="play-text-med">
+					<div>Goal scored by <viewplayer player="{{play.meta.actionPlayers[0]}}"></viewplayer></div>
+					<div class="font-subtext">
+						<span>({{play.meta.extraInfo[0]}} - Assists:</span><!-- Comments here make the spans render w/o space inbetween. http://goo.gl/5OD8tb
+						--><span ng-if="play.meta.actionPlayers.length >= 2"><viewplayer player="{{play.meta.actionPlayers[1]}}"></viewplayer></span><!--
+						--><span ng-if="play.meta.actionPlayers.length == 3">, <viewplayer player="{{play.meta.actionPlayers[2]}}"></viewplayer></span><!--
+						--><span>)</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Hit -->
+		<div ng-if="play.event == 'HIT'">
+			<div>
+				<img ng-src="assets/img/{{play.meta.mainLogo}}.svg" class="play-team-img" />
+				<div class="play-text-med">
+					<div>Hit by <viewplayer player="{{play.meta.actionPlayers[0]}}"></viewplayer> on <viewplayer player="{{play.meta.actionPlayers[1]}}"></viewplayer></div>
+					<div class="font-subtext">({{play.meta.extraInfo[0]}})</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Missed Shot -->
+		<div ng-if="play.event == 'MISS'">
+			<div>
+				<img ng-src="assets/img/{{play.meta.mainLogo}}.svg" class="play-team-img" />
+				<div class="play-text-med">
+					<div>Shot (miss) by <viewplayer player="{{play.meta.actionPlayers[0]}}"></viewplayer></div>
+					<div class="font-subtext">({{play.meta.extraInfo[0]}}, {{play.meta.extraInfo[1]}})</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Period End -->
+		<div ng-if="play.event == 'PEND'">
+			<div>
+				<img ng-src="assets/img/{{play.visitorTeam}}.svg" class="play-team-img" />
+				<img ng-src="assets/img/{{play.homeTeam}}.svg" class="play-team-img" />
+				<div class="play-text-lg">
+					<div>{{play.periodOrd}} period ended</div>
+					<div class="font-subtext">
+						(Local time: {{play.meta.eventTime}})
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Penalty -->
+		<div ng-if="play.event == 'PENL'">
+			<div>
+				<img ng-src="assets/img/{{play.meta.mainLogo}}.svg" class="play-team-img play-team-img-grey" />
+				<div class="play-text-med">
+					<div>{{play.meta.extraInfo[0]}} on <viewplayer player="{{play.meta.actionPlayers[0]}}"></viewplayer></div>
+					<div class="font-subtext">
+						<span>({{ play.meta.extraInfo[1] }}</span><!-- Comments here make the spans render w/o space inbetween. http://goo.gl/5OD8tb
+						--><span ng-if="play.meta.extraInfo.length >= 3">, Drawn by: <viewplayer player="{{play.meta.actionPlayers.last()}}"></viewplayer></span><!--
+						--><span ng-if="play.meta.extraInfo.length == 4">, Served by: <viewplayer player="{{play.meta.actionPlayers[1]}}"></viewplayer></span><!--
+						--><span>)</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Period Start -->
+		<div ng-if="play.event == 'PSTR'">
+			<div>
+				<img ng-src="assets/img/{{play.visitorTeam}}.svg" class="play-team-img" />
+				<img ng-src="assets/img/{{play.homeTeam}}.svg" class="play-team-img" />
+				<div class="play-text-lg">
+					<div>{{play.periodOrd}} period started</div>
+					<div class="font-subtext">
+						(Local time: {{play.meta.eventTime}})
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Shot -->
+		<div ng-if="play.event == 'SHOT'">
+			<div>
+				<img ng-src="assets/img/{{play.meta.mainLogo}}.svg" class="play-team-img" />
+				<div class="play-text-med">
+					<div>Shot by <viewplayer player="{{play.meta.actionPlayers[0]}}"></viewplayer></div>
+					<div class="font-subtext">({{play.meta.extraInfo[0]}}, {{play.meta.extraInfo[2]}})</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Shootout Complete -->
+		<div ng-if="play.event == 'SOC'">Shootout completed. Local time: {{play.meta.eventTime}}</div>
+
+		<!-- Stoppage -->
+		<div ng-if="play.event == 'STOP'">
+			<div>
+				<img ng-src="assets/img/{{play.visitorTeam}}.svg" class="play-team-img" />
+				<img ng-src="assets/img/{{play.homeTeam}}.svg" class="play-team-img" />
+				<div class="play-text-lg">
+					<div>Play stopped</div>
+					<div class="font-subtext">
+						({{play.meta.cleanText}})
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Takeaway -->
+		<div ng-if="play.event == 'TAKE'">
+			<div>
+				<img ng-src="assets/img/{{play.meta.mainLogo}}.svg" class="play-team-img" />
+				<div class="play-text-med">
+					<div>Takeaway by <viewplayer player="{{play.meta.actionPlayers[0]}}"></viewplayer></div>
+					<div class="font-subtext">({{play.meta.extraInfo[0]}})</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
