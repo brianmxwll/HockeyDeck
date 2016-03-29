@@ -16,17 +16,28 @@ angular
 				SetSideView($scope, "player", args);
 			}
 	    });
+
+	    SettingsMessageService.subscribe('event-view-thread-detail', $scope, function eventsChanged(args) {
+			if ($scope.controllerIdent == args.ident) { //Is the source of this event the settings instance we care about?
+				console.log($scope.controllerIdent, ' New reddit thread detail event', args);
+				SetSideView($scope, "thread", args);
+			}
+	    });
 	}]);
 
 
 
 function SetSideView($scope, type, args) {
 	$scope.view = "side";
-	$scope.sideType = "player";
+	$scope.sideType = type;
 
 	if ($scope.sideType == "player") {
 		$scope.sideTitle = "Back to " + $scope.title;
 		$scope.playerDetails = args.player;
+	}
+	else if ($scope.sideType == "thread") {
+		$scope.sideTitle = "Back to ?";
+		$scope.threadDetails = args.thread;
 	}
 
 	$scope.$digest();

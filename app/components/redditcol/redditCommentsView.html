@@ -1,0 +1,9 @@
+<div ng-controller="RedditThreadController" class="col-container">
+	Comments!
+	<div ng-repeat="post in comments" class="thread-container">
+		<div ng-bind-html="decodeContent(post.data.body_html) | trustedHtml">
+
+		</div>
+	</div>
+</div>
+

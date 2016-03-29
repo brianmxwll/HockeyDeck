@@ -1,6 +1,16 @@
 <div ng-controller="RedditListingController" class="col-container">
-	<div ng-repeat="gameThread in gameThreads">
-		<span>{{cleanGDTTitle(gameThread.data.title)}}</span>
+	<div ng-repeat="gameThread in gameThreads" class="thread-container">
+		<div class="thread-voting-area">
+			<img ng-src="assets/img/vote-up.svg" class="thread-vote-img" />
+			<div class="thread-score">{{gameThread.data.score}}</div>
+			<img ng-src="assets/img/vote-down.svg" class="thread-vote-img" />
+		</div>
+		<div class="thread-title-area">{{cleanGDTTitle(gameThread.data.title)}}</div>
+		<div class="thread-comments-area" viewthreadcomments thread="{{gameThread.data}}">
+			<img ng-src="assets/img/icon-comments.svg" class="thread-comments-img" />
+			<div class="thread-comments">{{gameThread.data.num_comments}}</div>
+		</div>
+		<div style="clear:both;"></div>
 	</div>
 </div>
 

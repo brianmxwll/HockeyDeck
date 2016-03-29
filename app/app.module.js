@@ -1,5 +1,5 @@
 angular
-	.module('hockeydeck', ['ngAnimate', 'angular.filter', 'ngStorage'])
+	.module('hockeydeck', ['ngAnimate', 'angular.filter', 'ngStorage', 'ngSanitize'])
 	.config(['$httpProvider', function($httpProvider) { 
 
 		//HACK: Disable all template caches for dev env
@@ -17,7 +17,12 @@ angular
 	    $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
 	    $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 	    //ENDHACK
-	}]);
+	}])
+	.filter('trustedHtml', ['$sce', function($sce){
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    }]);
 
 var gameFunctions = {};
 

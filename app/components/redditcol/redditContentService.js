@@ -16,11 +16,22 @@ angular
     	console.log("Reddit Content Service init");
         
         //"Public" methods
-        this.getGameThreads = function() {
+        this.getGDTs = function() {
             return new Promise(function(resolve, reject) {
                 get("https://oauth.reddit.com/user/GDT_Bot/submitted/?sort=top&t=day").then(function(apiResponse) {
                     //Strip off some of the layers.
                     resolve(apiResponse.data.children);
+                }, function(error){
+                    console.log('error found', error);
+                });
+            });
+        }
+
+        this.getGDTComments = function(subreddit, gdtId) {
+            return new Promise(function(resolve, reject) {
+                get("https://oauth.reddit.com/r/" + subreddit + "/comments/" + gdtId).then(function(apiResponse) {
+                    //We get back the thread and the comments - return both for now?
+                    resolve(apiResponse);
                 }, function(error){
                     console.log('error found', error);
                 });
@@ -41,6 +52,7 @@ angular
                         },
                         url: urlRequested,
                         success: function(data) {
+                            console.log('redditContentService: Got data back:', data);
                             resolve(data);
                         },
                         error: function (xhr, ajaxOptions, thrownError) {
