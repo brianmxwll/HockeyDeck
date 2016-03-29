@@ -1,6 +1,6 @@
 angular
 	.module('hockeydeck')
-	.controller("StandingsController", ['$scope', '$window', 'SettingsMessageService', function($scope, $window, SettingsMessageService) {
+	.controller("StandingsController", ['$scope', '$window', 'settingsMessageService', function($scope, $window, settingsMessageService) {
 		$scope.colSort = ['Conference', 'Division', '-PTS']; //Default sort is by division (conf first to keep logical)
 		$scope.colGroup = 'Division';
 

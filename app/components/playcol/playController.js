@@ -2,7 +2,7 @@
 
 angular
 	.module('hockeydeck')
-	.controller("PlayController", ['$scope', '$window', 'SettingsMessageService', function($scope, $window, SettingsMessageService) {
+	.controller("PlayController", ['$scope', '$window', 'settingsMessageService', function($scope, $window, settingsMessageService) {
 		$scope.pages = 1;
 		$scope.allowedEvents = [];
 		$scope.allowedTeams = [];
@@ -18,14 +18,14 @@ angular
 		);	
 
 		//We must subscribe to any events we may care about. So far, this means events coming from the settings page.
-		SettingsMessageService.subscribe('event-new-allowed-events', $scope, function eventsChanged(args) {
+		settingsMessageService.subscribe('event-new-allowed-events', $scope, function eventsChanged(args) {
 			if ($scope.controllerIdent == args.ident) { //Is the source of this event the settings instance we care about?
 				console.log($scope.controllerIdent, 'New allowed events', args);
 				$scope.allowedEvents = args.allowedEvents;
 			}
 	    });
 
-		SettingsMessageService.subscribe('event-new-allowed-teams', $scope, function teamsChanged(args) {
+		settingsMessageService.subscribe('event-new-allowed-teams', $scope, function teamsChanged(args) {
 			if ($scope.controllerIdent == args.ident) { //Is the source of this event the settings instance we care about?
 				$scope.allowedTeams = args.allowedTeams;
 			}

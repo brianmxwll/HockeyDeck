@@ -2,7 +2,7 @@
 
 angular
     .module('hockeydeck')
-    .factory('SettingsMessageService', function($rootScope) {
+    .factory('settingsMessageService', function($rootScope) {
         return {
             subscribe: function(event, scope, callback) {
                 var handler = $rootScope.$on(event, function(e, args) {

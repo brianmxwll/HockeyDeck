@@ -27,7 +27,7 @@ settings.events = [
 
 angular
 	.module('hockeydeck')
-	.controller('SettingsController', ['$scope', '$window', 'SettingsMessageService', function($scope, $window, SettingsMessageService) {
+	.controller('SettingsController', ['$scope', '$window', 'settingsMessageService', 'gameDataService', function($scope, $window, settingsMessageService, gameDataService) {
 		$scope.settingsClosed = true;
 
 		$scope.toggleSettings = function (type) {
@@ -35,18 +35,13 @@ angular
 		};
 
 		$scope.events = $.extend(true, [], settings.events); //Odd way of saying deep copy to prevent references from being copied. Just setting it will make all events "selected" status share between instances.
-		$scope.teams = [];
+		$scope.teams = gameDataService.getActiveTeams();
 		$scope.closed = $.extend(true, [], settings.closed);
 
-
-		//Watch for new plays
-		$scope.$watch(
-			function () {
-				return $window.Global.Teams;
-			}, function(n,o){
-				$scope.teams = $.extend(true, [], n);
-			}
-		);	
+		//Listen for any new active teams
+		settingsMessageService.subscribe('event-updated-active-teams', $scope, function teamsChanged(args) {
+			$scope.teams = $.extend(true, [], args.activeTeams);
+	    });
 
 		//Watch for new filter on events
 		$scope.$watch('events|filter:{selected:true}', function (nv) {
@@ -54,7 +49,7 @@ angular
 		    	return event.name;
 		    });
 
-			SettingsMessageService.notify('event-new-allowed-events', {
+			settingsMessageService.notify('event-new-allowed-events', {
 				ident: $scope.controllerIdent,
 				allowedEvents: $scope.allowedEvents
 			});
@@ -66,7 +61,7 @@ angular
 		    	return team.abbreviation;
 		    });
 
-		    SettingsMessageService.notify('event-new-allowed-teams', {
+		    settingsMessageService.notify('event-new-allowed-teams', {
 				ident: $scope.controllerIdent,
 				allowedTeams: $scope.allowedTeams
 			});

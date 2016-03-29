@@ -25,7 +25,7 @@ angular
 			}
 		}
 	})
-	.directive("viewplayer", ['$compile', 'SettingsMessageService', function($compile, SettingsMessageService){
+	.directive("viewplayer", ['$compile', 'settingsMessageService', function($compile, settingsMessageService){
 		return  {
 			link: function(scope, element, attrs, ctrl){
 				//Setup our element.
@@ -34,7 +34,7 @@ angular
 				element.text(player.displayName);
 				
 				element.bind("click", function(){
-					SettingsMessageService.notify('event-view-player-detail', {
+					settingsMessageService.notify('event-view-player-detail', {
 						ident: scope.controllerIdent,
 						player: player
 					});

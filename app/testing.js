@@ -1,35 +1,13 @@
 //Methods in here are likely garbage and need to be truly implemented or at a minimum, saftey checks added.
 var Global = {};
 Global.Plays = [];
-Global.Games = [];
 Global.StatLines = [];
 Global.Standings = [];
-Global.Teams = undefined;
 
 
 //Get data immediately.
 UpdateRosters();
 UpdateStandings();
-
-function UpdateScores() {
-	$.get("scores.json?"+moment().unix(), function( data ) {
-		console.log("Updating Scores");
-		$scope = angular.element('[ng-controller=GameController]').scope();
-
-		//Later update to accept any date.
-		Global.Games = data.dates[0].games; 
-
-		//Force a digest to see changes on page.
-		if ($scope != undefined) {
-			$scope.$digest();
-		}
-
-		//Update what games are being tracked.
-		UpdateActiveTeams();
-	}, "json" );
-	
-	setTimeout(UpdateScores, 15000); //Run again in 15s.
-}
 
 function UpdatePlays() {
 	$.get("plays.json?"+moment().unix(), function( data ) {
@@ -79,57 +57,12 @@ function UpdatePlays() {
 	setTimeout(UpdatePlays, 15000); //Run again in 15s.
 }
 
-function GetTodayDate() {
-	return moment().format("YYYY-MM-DD")
-}
-
 //Stupid helper method to get last item in array. Cleaner code.
 if (!Array.prototype.last){
     Array.prototype.last = function(){
         return this[this.length - 1];
     };
 };
-
-function UpdateActiveTeams() {
-	//We start the list off as undefined to allow for a proper deep copy later on. Odd, but w/e. http://goo.gl/34Cu7W
-	if (Global.Teams == undefined) {
-		Global.Teams = []; //Init once ready.
-	}
-
-	//Someday should replace this with the active games for the day, not just which ones have reported plays.
-	for (var i = 0; i < Global.Games.length; i++) {
-		if (FindTeam(Global.Games[i].teams.home.team.abbreviation) == -1) {
-			Global.Teams.push(CreateTeamFilterModel(Global.Games[i].teams.home.team));
-		}
-
-		if (FindTeam(Global.Games[i].teams.away.team.abbreviation) == -1) {
-			Global.Teams.push(CreateTeamFilterModel(Global.Games[i].teams.away.team));
-		}
-	}
-
-	//Sort by team name
-	Global.Teams.sort(function(a, b) { 
-		return a.name.localeCompare(b.name);
-	});
-
-	//Force a digest to see changes on page.
-	//Technically only need this on the first run - would be nice to track down a more elegant solution if I get the time.
-	$scope = angular.element('[ng-controller=SettingsController]').scope();
-	if ($scope != undefined) {
-		$scope.$digest();
-	}
-}
-
-//This func is garbage - should find a way to more elegantly search. (Quickly)
-function FindTeam(abbreviation) {
-	for(var i = 0; i < Global.Teams.length; i++) {
-		if (Global.Teams[i].abbreviation == abbreviation) {
-			return i;
-		}
-	}
-
-	return -1;
-}
 
 function CreateTeamFilterModel(team) {
 	var model = {}

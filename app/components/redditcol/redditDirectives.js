@@ -15,7 +15,7 @@ angular
 			}
 		}
 	})
-	.directive("addredditcol", ['$compile', 'SettingsMessageService', function($compile, SettingsMessageService){
+	.directive("addredditcol", ['$compile', 'settingsMessageService', function($compile, settingsMessageService){
 		return  {
 			scope: {},
 			link: function(scope, element, attrs, ctrl){
@@ -26,14 +26,14 @@ angular
 			}
 		};
 	}])
-	.directive("viewthreadcomments", ['$compile', 'SettingsMessageService', function($compile, SettingsMessageService){
+	.directive("viewthreadcomments", ['$compile', 'settingsMessageService', function($compile, settingsMessageService){
 		return  {
 			link: function(scope, element, attrs, ctrl){
 				//Setup our element.
 				var thread = JSON.parse(attrs['thread']);
 				
 				element.bind("click", function(){
-					SettingsMessageService.notify('event-view-thread-detail', {
+					settingsMessageService.notify('event-view-thread-detail', {
 						ident: scope.controllerIdent,
 						thread: thread
 					});
@@ -41,7 +41,7 @@ angular
 			}
 		};
 	}])
-	.directive("commentscol", ['$compile', 'SettingsMessageService', function($compile, SettingsMessageService){
+	.directive("commentscol", ['$compile', 'settingsMessageService', function($compile, settingsMessageService){
 		return {
 			restrict: "E",
 			templateUrl: "app/components/redditcol/redditCommentsView.html",

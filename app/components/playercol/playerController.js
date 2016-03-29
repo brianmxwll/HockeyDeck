@@ -2,7 +2,7 @@
 
 angular
 	.module('hockeydeck')
-	.controller("PlayerController", ['$scope', '$window', 'SettingsMessageService', function($scope, $window, SettingsMessageService) {
+	.controller("PlayerController", ['$scope', '$window', 'settingsMessageService', function($scope, $window, settingsMessageService) {
 		console.log("New PlayerController");
 
 		$scope.cleanSeason = function CleanSeason(rawTxt) {

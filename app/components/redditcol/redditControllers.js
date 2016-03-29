@@ -2,7 +2,7 @@
 
 angular
 	.module('hockeydeck')
-	.controller("RedditListingController", ['$scope', '$window', 'SettingsMessageService', 'redditContentService', function($scope, $window, SettingsMessageService, redditContentService) {
+	.controller("RedditListingController", ['$scope', '$window', 'settingsMessageService', 'redditContentService', function($scope, $window, settingsMessageService, redditContentService) {
 		console.log("New RedditListingController");
 		
 		redditContentService.getGDTs().then(function(response){
@@ -21,7 +21,7 @@ angular
 			return title;
 		}
 	}])
-	.controller("RedditThreadController", ['$scope', '$window', 'SettingsMessageService', 'redditContentService', function($scope, $window, SettingsMessageService, redditContentService) {
+	.controller("RedditThreadController", ['$scope', '$window', 'settingsMessageService', 'redditContentService', function($scope, $window, settingsMessageService, redditContentService) {
 		console.log("New RedditThreadController");
 		
 		//After we are initialized, go fetch some of the core data.
