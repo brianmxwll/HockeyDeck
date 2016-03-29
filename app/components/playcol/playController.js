@@ -2,22 +2,22 @@
 
 angular
 	.module('hockeydeck')
-	.controller("PlayController", ['$scope', '$window', 'settingsMessageService', function($scope, $window, settingsMessageService) {
+	.controller("PlayController", ['$scope', '$window', 'settingsMessageService', 'playDataService', function($scope, $window, settingsMessageService, playDataService) {
 		$scope.pages = 1;
 		$scope.allowedEvents = [];
 		$scope.allowedTeams = [];
 		$scope.FilterPlays = FilterPlays;
+		$scope.plays = playDataService.getPlays();
 		
-		//Watch for new plays
-		$scope.$watch(
-			function () {
-				return $window.Global.Plays;
-			}, function(n,o){
-				$scope.plays = n;
-			}
-		);	
+		//SOMEHOW USE $scope.firstRun to determine if this should animate or not.
 
 		//We must subscribe to any events we may care about. So far, this means events coming from the settings page.
+		settingsMessageService.subscribe('event-updated-plays', $scope, function eventsChanged(args) {
+			console.log($scope.controllerIdent, 'Updated plays', args);
+			$scope.plays = args.plays;
+			$scope.$digest();
+	    });
+
 		settingsMessageService.subscribe('event-new-allowed-events', $scope, function eventsChanged(args) {
 			if ($scope.controllerIdent == args.ident) { //Is the source of this event the settings instance we care about?
 				console.log($scope.controllerIdent, 'New allowed events', args);

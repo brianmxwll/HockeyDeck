@@ -77,6 +77,15 @@ angular
             return -1;
         }
 
+        function CreateTeamFilterModel(team) {
+            var model = {}
+            model.name = team.name;
+            model.abbreviation = team.abbreviation;
+            model.selected = true;
+
+            return model;
+        }
+
         //After everything is defined, kick off our first game loop
         self.UpdateScores();
     }]);
