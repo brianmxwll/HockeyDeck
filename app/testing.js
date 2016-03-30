@@ -4,7 +4,6 @@ Global.StatLines = [];
 Global.Standings = [];
 
 //Get data immediately.
-UpdateRosters();
 UpdateStandings();
 
 //Stupid helper method to get last item in array. Cleaner code.

@@ -1,7 +1,7 @@
 angular
 	.module('hockeydeck')
     .service('gameDataService', ['settingsMessageService', function(settingsMessageService) {
-    	console.log("Reddit Game Data Service Service init");
+    	console.log("Game Data Service Service init");
         var self = this; //Meaning of "this" changes over time - need a consistent reference to the service
 
         this.Games = [];

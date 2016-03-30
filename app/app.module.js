@@ -22,6 +22,10 @@ angular
         return function(text) {
             return $sce.trustAsHtml(text);
         };
+    }])
+    .run(['rosterDataService', function(rosterDataService) {
+    	//Things to run immediately on app start - mostly data init.
+    	rosterDataService.UpdateRosters();
     }]);
 
 var gameFunctions = {};

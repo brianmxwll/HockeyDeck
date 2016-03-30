@@ -1,6 +1,6 @@
 angular
 	.module('hockeydeck')
-	.directive("playercol", function(){
+	.directive("playercol", ['rosterDataService', function(rosterDataService){
 		return {
 			restrict: "E",
 			templateUrl: "app/components/playercol/playerView.html",
@@ -15,8 +15,8 @@ angular
 
 				//Manually convert from string.
 				scope.player = JSON.parse(scope['player']); //Arg passed from prev view
-				scope.playerInfo = GetPlayer(scope.player.team, scope.player.name, scope.player.num);
-				GetPlayerStatLines(scope.playerInfo.id, function(result) {
+				scope.playerInfo = rosterDataService.GetPlayer(scope.player.team, scope.player.name, scope.player.num);
+				rosterDataService.GetPlayerStatLines(scope.playerInfo.id, function(result) {
 					scope.playerData = result.people[0];
 					scope.playerData.birthDate = moment(scope.playerData.birthDate).format('MMMM D, YYYY');
 				});
@@ -24,7 +24,7 @@ angular
 				scope.img = 'http://tsnimages.tsn.ca/ImageProvider/PlayerHeadshot?seoId=' + scope.playerInfo.name.replace(' ','-').replace("'",'').replace('.','')
 			}
 		}
-	})
+	}])
 	.directive("viewplayer", ['$compile', 'settingsMessageService', function($compile, settingsMessageService){
 		return  {
 			link: function(scope, element, attrs, ctrl){
