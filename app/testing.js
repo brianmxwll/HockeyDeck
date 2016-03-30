@@ -1,10 +1,6 @@
 //Methods in here are likely garbage and need to be truly implemented or at a minimum, saftey checks added.
 var Global = {};
 Global.StatLines = [];
-Global.Standings = [];
-
-//Get data immediately.
-UpdateStandings();
 
 //Stupid helper method to get last item in array. Cleaner code.
 if (!Array.prototype.last){

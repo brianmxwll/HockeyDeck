@@ -23,9 +23,10 @@ angular
             return $sce.trustAsHtml(text);
         };
     }])
-    .run(['rosterDataService', function(rosterDataService) {
+    .run(['rosterDataService', 'standingsDataService', function(rosterDataService, standingsDataService) {
     	//Things to run immediately on app start - mostly data init.
     	rosterDataService.UpdateRosters();
+    	standingsDataService.UpdateStandings(); //TBD: Should init here or do it just in the standings column? Might get used globally, or not.
     }]);
 
 var gameFunctions = {};
