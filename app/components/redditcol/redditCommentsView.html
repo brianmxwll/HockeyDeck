@@ -1,9 +1,18 @@
 <div ng-controller="RedditThreadController" class="col-container">
-	Comments!
-	<div ng-repeat="post in comments" class="thread-container">
-		<div ng-bind-html="decodeContent(post.data.body_html) | trustedHtml">
-
+	<script type="text/ng-template" id="commentTree">
+		<div ng-init="expand = true">
+			<div ng-click="expand = !expand">
+				[{{expand ? "-" : "+"}}] {{post.data.author}}
+			</div>
+			<div ng-show="expand">
+	    		<div ng-bind-html="decodeContent(post.data.body_html) | trustedHtml" style="clear:both;"></div>
+	    		<div ng-if="replies != '' && depth < 5" ng-repeat="post in post.data.replies.data.children" ng-init="depth = depth + 1" class="child-comment" ng-include="'commentTree'"></div>
+	    	</div>
 		</div>
-	</div>
-</div>
+	    
+	</script>
 
+
+	Comments!
+	<div ng-repeat="post in comments" ng-init="depth = 0" class="" ng-include="'commentTree'"></div>
+</div>

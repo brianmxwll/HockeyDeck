@@ -340,7 +340,7 @@ table.standings-table th:not(:first-child):not(:last-child) {
 }
 
 
-.thread-container { 
+.thread-containers { 
     border-style: solid; 
     border-width:0px 0px 1px 0px; 
     border-color:#444448;
@@ -391,4 +391,8 @@ table.standings-table th:not(:first-child):not(:last-child) {
 
 .thread-comments-img {
     width:20px;
+}
+
+.child-comment {
+    padding-left:20px;
 }
