@@ -1,4 +1,4 @@
-<div ng-controller="PlayController" class="col-container font-size-normal font-color-primary play-col">
+<div ng-controller="PlayController" class="font-size-normal font-color-primary play-col">
 	<div class="play-container" ng-class="{'animate-repeat': !firstRun}" ng-repeat="play in plays | filter: FilterPlays(allowedEvents, allowedTeams) | limitTo:pages*100">
 		<!-- Render each play type as required [u'PSTR', u'SOC', u'HIT', u'GOAL', u'GIVE', u'CHL', u'STOP', u'PEND', u'TAKE', u'FAC', u'SHOT', u'GEND', u'PENL', u'MISS', u'BLOCK'] -->
 		<!-- Block -->
