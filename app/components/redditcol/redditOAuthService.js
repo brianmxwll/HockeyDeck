@@ -38,7 +38,7 @@ angular
 			            processData: false,
 			            success: function(data) {
 			            	console.log("getAuthToken: Got auth data back:", data);
-			                setAuthToken(data.access_token);
+			                setAuthToken(data.access_token, data.expires_in);
 			                console.log("getAuthToken: Auth key set as:", $localStorage.redditAuth.token);
 			                resolve(data.access_token);
 			            },
@@ -64,56 +64,25 @@ angular
     		return $localStorage.redditAuth;
     	}
 
-    	function setAuthToken(token) {
+    	function setAuthToken(token, expires_in) {
     		console.log("SETTING AUTH TOKEN:", token);
     		$localStorage.redditAuth.token = token;
+            $localStorage.redditAuth.expires = moment().unix() + (expires_in - 30); //Cut our expiration short so the user doesn't see the overlap.
     	}
 
     	function haveToken() {
-    		return $localStorage.redditAuth.token != undefined;
+            //Do we even have a token?
+            if ($localStorage.redditAuth.token == undefined) {
+                return false;
+            }
+
+            //Okay, we have a token, but has it expired?
+            if ($localStorage.redditAuth.expires < moment().unix()) {
+                return false;
+            }
+    		return true;
     	}
 
     	//TODO: Refreshes, revoking, etc
 
     }]);
-
-
-
-//Example post with headers
-/* $.ajax({
-        type:"POST",
-        beforeSend: function (request)
-        {
-            request.setRequestHeader("Authority", authorizationToken);
-        },
-        url: "entities",
-        data: "json=" + escape(JSON.stringify(createRequestObject)),
-        processData: false,
-        success: function(msg) {
-            $("#results").append("The result =" + StringifyPretty(msg));
-        }
-	});*/
-
- //Old method of Oauth2, for later reference
- /*
-// Generic OAuth 2.0
-$authProvider.oauth2({
-    name: 'reddit',
-    //url: '/auth/reddit',
-    clientId: 'yL6KjSuclZOJrg',
-    responseType: 'token',
-    scope: 'identity read vote edit submit',
-    duration: 'temporary',
-    redirectUri: window.location.origin + '/',
-    authorizationEndpoint: 'https://www.reddit.com/api/v1/authorize',
-    requiredUrlParams: ['scope', 'duration', 'state'],
-    state: 'asjdhflakjshdfljhasdfew', //Random junk string for now - should authenticate this post request.
-    type: '2.0'
-    //popupOptions: null,
-    //responseParams: {
-    //  code: 'code',
-    //  clientId: 'clientId',
-	    //  redirectUri: 'redirectUri'
-    //}
-});
- */
